@@ -1,7 +1,10 @@
 <?php
-
+session_start();
 // 関数ファイル読み込み
 include('function.php');
+
+// LOGIN認証チェック関数を実行
+loginCheck();
 
 // DB接続用関数を実行
 $pdo = db_connect();
@@ -40,11 +43,11 @@ $randomCardName = $output[array_rand($output)];
     <?php include('include/header.php'); ?>
     <div class="bg-white py-6 sm:py-8 lg:py-12">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-            <h2 class="mb-2 text-center text-2xl font-bold text-gray-800 md:mb-2 lg:text-3xl">2023年0月0日</h2>
+            <h2 class="mb-2 text-center text-2xl font-bold text-gray-800 md:mb-2 lg:text-3xl">今日の出来事</h2>
 
             <form action="insert.php" method="POST" class="mx-auto max-w-lg">
                 <div class="flex flex-col gap-4 p-4 md:p-8">
-                    <h3 class="mb-4 text-center text-lg font-bold text-gray-800 md:mb-8 lg:text-2xl">今日の出来事</h3>
+
                     <div>
                         <label for="today_events" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">今日、あなたの中で印象に残った出来事</label>
                         <input name="today_events" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
@@ -101,7 +104,7 @@ $randomCardName = $output[array_rand($output)];
             </form>
         </div>
     </div>
-
+    <?php include('include/footer.php'); ?>
 
 </body>
 

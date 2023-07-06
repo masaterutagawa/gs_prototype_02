@@ -1,40 +1,9 @@
 <?php
-
+session_start();
 // 関数ファイル読み込み
 include('function.php');
 
-// DB接続用関数を実行
-$pdo = db_connect();
-
-// SQL作成&実行
-$sql = "SELECT * FROM dev13_diary WHERE 1";
-$stmt = $pdo->prepare($sql);
-
-try {
-    $status = $stmt->execute();
-} catch (PDOException $e) {
-    echo json_encode(["sql error" => "{$e->getMessage()}"]);
-    exit();
-}
-// SQL実行の処理
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$output = '';
-foreach ($result as $record)
-    $output .= "
-        
-            <a href=\"diary-entry.php?diary_id={$record["diary_id"]}\" class=\"group relative flex h-48 flex-col overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-64 xl:h-96\">
-                <img src=\"card_images/{$record["select_card_filename"]}\" loading=\"lazy\" alt=\"Photo by Minh Pham\" class=\"absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110\" />
-                <div class=\"pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 to-transparent md:via-transparent\"></div>
-                <div class=\"relative mt-auto p-4\">
-                <span class=\"block text-sm text-gray-200\">{$record["registration_date"]}</span>
-                <h2 class=\"mb-2 text-xl font-semibold text-white transition duration-100\">{$record["today_events"]}</h2>
-                <span class=\"font-semibold text-white\">この日の記録を確認する</span>
-                </div>
-            </a>
-        
-";
 ?>
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -42,25 +11,66 @@ foreach ($result as $record)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>記録</title>
+    <title>ログイン</title>
 </head>
 
 <body>
-    <?php include('include/header.php'); ?>
-    <div class="bg-white py-6 sm:py-8 lg:py-12">
-        <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-            <!-- text - start -->
-            <div class="mb-10 md:mb-16">
-                <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">ガワさんの日記</h2>
-                <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">日記の一覧</p>
-            </div>
-            <!-- text - end -->
-            <div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3">
-                <?= $output  ?>
+    <section class="">
+        <div class=" items-center px-5 py-12 lg:px-20">
+            <div class="flex flex-col w-full max-w-md p-10 mx-auto my-6 transition duration-500 ease-in-out transform bg-white rounded-lg md:mt-0">
+                <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">ログイン画面</h2>
+                <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">ログインしてね</p>
+                <div class="mt-8">
+                    <div class="mt-6">
+                        <form action="login_act.php" method="POST" class="space-y-6" data-bitwarden-watching="1">
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-neutral-600"> ユーザー名
+                                </label>
+                                <div class="mt-1">
+                                    <input id="" name="user_code" type="text" placeholder="ユーザー名" class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300">
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <label for="password" class="block text-sm font-medium text-neutral-600"> パスワード
+                                </label>
+                                <div class="mt-1">
+                                    <input id="" name="user_pass" type="password" autocomplete="current-password" required="" placeholder="パスワード" class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300">
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input id="remember-me" name="remember-me" type="checkbox" placeholder="Your password" class="w-4 h-4 text-blue-600 border-gray-200 rounded focus:ring-blue-500">
+                                    <label for="remember-me" class="block ml-2 text-sm text-neutral-600"> パスワードを保存する
+                                    </label>
+                                </div>
+
+                                <div class="text-sm">
+                                    <a href="#" class="font-medium text-blue-600 hover:text-blue-500"> パスワードを忘れた場合
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">ログイン</button>
+                            </div>
+                        </form>
+                        <div class="relative my-4">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-300"></div>
+                            </div>
+                        </div>
+                        <h2 class="mt-16 mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">ユーザー登録がまだの人</h2>
+                        <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg"><a href="user-regist.php">ユーザー登録はこち</a>ら</p>
+
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <?php include('include/footer.php'); ?>
+    </section>
+
 </body>
+
 
 </html>

@@ -1,7 +1,7 @@
 <div class="bg-white pt-12 sm:pt-16 lg:pt-24">
     <!-- nav - start -->
     <nav class="sticky bottom-0 mx-auto flex w-full justify-between gap-8 border-t bg-white px-10 pt-5 pb-3 text-xs sm:max-w-md sm:rounded-t-xl sm:border-l sm:border-r sm:text-sm">
-        <a href="/gs_prototype_01/" class="flex flex-col items-center gap-1 text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+        <a href="diary-index.php" class="flex flex-col items-center gap-1 text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
             <span class="flex flex-col items-center gap-1 text-indigo-500">
                 <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
@@ -28,12 +28,12 @@
             <span>カード登録</span>
         </a>
 
-        <a href="login.php" class="flex flex-col items-center gap-1 text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
+        <a href="admin-index.php" class="flex flex-col items-center gap-1 text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                 <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
             </svg>
 
-            <span>ログイン</span>
+            <span>管理画面</span>
         </a>
     </nav>
     <!-- nav - end -->
