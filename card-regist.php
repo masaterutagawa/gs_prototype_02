@@ -1,3 +1,11 @@
+<?php
+session_start();
+// 関数ファイル読み込み
+include('function.php');
+
+// LOGIN認証チェック関数を実行
+loginCheck();
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -32,7 +40,7 @@
             </form>
         </div>
     </div>
-
+    <?php include('include/footer.php'); ?>
 
 </body>
 

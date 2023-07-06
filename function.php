@@ -9,13 +9,13 @@ function h($value)
 function loginCheck()
 {
     if (!isset($_SESSION['chk_ssid']) || $_SESSION['chk_ssid'] != session_id()) {
-        echo 'ログインしてください';
+        header("Location: index.php");
         exit();
     } else {
         // セッションIDを新しく発行（前のSESSION_IDは無効）※セッションハイジャック対策
         session_regenerate_id(true);
         $_SESSION['chk_ssid'] = session_id();
-        echo $_SESSION['chk_ssid'];
+        // echo $_SESSION['chk_ssid'];
     }
 }
 
@@ -29,7 +29,7 @@ function db_connect()
     $password = 'tagawa';
     try {
         $pdo = new PDO($dsn, $usr, $password);
-        print '接続成功';
+        // print '接続成功';
     } catch (PDOException $e) {
         exit('データベースに接続できませんでした' . $e->getMessage());
     }

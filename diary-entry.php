@@ -2,6 +2,7 @@
 // 関数ファイル読み込み
 include('function.php');
 
+
 //1.GETでidを取得
 $diary_id = $_GET["diary_id"];
 
